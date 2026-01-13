@@ -1,335 +1,1586 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Kopi Kenangan Senja</title>
-    <!-- Fonts-->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>WEB KELAS XII TKJ 2</title>
+    <link rel="manifest" href="manifest.json" />
+    <!-- BASIC SEO -->
+    <meta
+      name="description"
+      content="Website resmi kelas XII TKJ 2. Dokumentasi, struktur kelas, prestasi, dan kegiatan siswa."
+    />
+    <meta
+      name="keywords"
+      content="XII TKJ 2, SMK, TKJ, kelas 12, website kelas"
+    />
+    <meta name="author" content="XII TKJ 2" />
+    <link rel="canonical" href="https://DOMAINKAMU" />
+
+    <!-- THEME -->
+    <meta name="theme-color" content="#071426" />
+
+    <!-- OPEN GRAPH (WhatsApp / Telegram / Discord) -->
+    <meta property="og:title" content="WEB KELAS XII TKJ 2" />
+    <meta
+      property="og:description"
+      content="Website resmi kelas XII TKJ 2. Dokumentasi, struktur kelas, prestasi, dan kegiatan siswa."
+    />
+    <meta property="og:image" content="https://DOMAINKAMU/preview.jpg" />
+    <meta property="og:url" content="https://DOMAINKAMU" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="XII TKJ 2" />
+    <meta property="og:locale" content="id_ID" />
+
+    <!-- TWITTER (AMAN, 1X AJA) -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="WEB KELAS XII TKJ 2" />
+    <meta name="twitter:description" content="Website resmi kelas XII TKJ 2." />
+    <meta name="twitter:image" content="https://DOMAINKAMU/preview.jpg" />
+
+    <!-- FONT & ICON -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;0,400;0,700;1,700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap"
       rel="stylesheet"
     />
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-    <!--Feather Icons-->
-    <script src="https://unpkg.com/feather-icons"></script>
-    <!--My Style-->
-    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      /* --- 1. SUPERIOR VARIABLES & RESET --- */
+      :root {
+        --bg-deep: #071426; /* biru gelap */
+        --glass-surface: rgba(255, 255, 255, 0.03);
+        --glass-border: rgba(255, 255, 255, 0.08);
+        --glass-highlight: rgba(255, 255, 255, 0.12);
+        --accent-primary: #3b82f6; /* biru terang */
+        --accent-secondary: #2563eb; /* biru medium */
+        --accent-glow: #60a5fa; /* biru glow */
+        --text-main: #ffffff;
+        --text-dim: #9fb3d1;
+        --radius-xl: 32px;
+        --radius-md: 16px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        background-color: var(--bg-deep);
+        color: var(--text-main);
+        overflow-x: hidden;
+        /* efek galaxy biru */
+        background-image: radial-gradient(
+            circle at 5% 10%,
+            rgba(37, 99, 235, 0.25),
+            transparent 40%
+          ),
+          radial-gradient(
+            circle at 95% 90%,
+            rgba(59, 130, 246, 0.25),
+            transparent 40%
+          ),
+          linear-gradient(180deg, #05101f, #071426);
+        background-attachment: fixed;
+        background-size: 120% 120%;
+        animation: bg-breathe 10s ease-in-out infinite alternate;
+      }
+
+      @keyframes bg-breathe {
+        0% {
+          background-position: 0% 50%;
+        }
+        100% {
+          background-position: 100% 50%;
+        }
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: var(--bg-deep);
+      }
+      ::-webkit-scrollbar-thumb {
+        background: var(--glass-border);
+        border-radius: 10px;
+      }
+
+      /* --- 2. LOADING SCREEN --- */
+      #loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: #000;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        transition: opacity 0.8s ease;
+      }
+      .loader-text {
+        font-size: 1.5rem;
+        font-weight: 800;
+        letter-spacing: 2px;
+        margin-bottom: 20px;
+      }
+      .spinner {
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        border-top-color: var(--accent-primary);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      /* --- 3. NAVBAR --- */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 1000;
+        background: rgba(7, 20, 38, 0.8);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(96, 165, 250, 0.2);
+      }
+      .brand {
+        font-size: 1.2rem;
+        font-weight: 800;
+        background: linear-gradient(to right, #fff, var(--text-dim));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .menu-trigger {
+        font-size: 1.4rem;
+        color: #fff;
+        cursor: pointer;
+        padding: 10px 12px;   /* ✅ ini jaraknya */
+        border-radius: 12px;
+      }
+
+      .menu-trigger:active {
+        background: rgba(255,255,255,0.08); /* efek klik */
+     }
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;   /* ⬅️ penting */
+  align-items: center;
+  gap: 28px;
+  transform: translateX(100%);
+  transition: 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+  overflow-y: auto;              /* ⬅️ penting */
+  padding: 80px 20px 40px;       /* ⬅️ kecilin */
+}
+
+
+.mobile-menu.active {
+  transform: translateX(0);
+}
+.menu-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.4);
+  z-index: 998;
+  opacity: 0;
+  pointer-events: none;
+  transition: .3s;
+}
+
+.menu-overlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+    .mobile-menu a {
+        font-size: 2rem;
+        font-weight: 700;
+        color: var(--text-dim);
+        text-decoration: none;
+        transition: 0.3s;
+        padding: 14px 0;      /* ✅ jarak atas-bawah */
+        line-height: 1.5;     /* ✅ biar lega */
+    }
+    .mobile-menu::-webkit-scrollbar {
+        width: 6px;
+    }
+
+        .mobile-menu::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.25);
+        border-radius: 10px;
+    }
+
+      .mobile-menu a:hover,
+      .mobile-menu a.active {
+        color: #fff;
+        transform: scale(1.1);
+      }
+      .mobile-menu::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      .mobile-menu::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+      }
+
+      /* --- 4. HERO --- */
+      header {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        padding: 0 20px;
+        position: relative;
+        padding-bottom: 120px;
+        padding-top: 80px;
+      }
+      .badge {
+        padding: 8px 16px;
+        background: rgba(59, 130, 246, 0.1);
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        border-radius: 20px;
+        color: var(--accent-primary);
+        font-size: 0.8rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+        display: inline-block;
+      }
+      h1 {
+        font-size: clamp(4rem, 12vw, 7rem);
+        line-height: 1.05;
+        font-weight: 800;
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #fff 0%, var(--text-dim) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .scroll-down {
+        position: absolute;
+        bottom: 60px;
+        animation: bounce 2s infinite;
+        opacity: 0.5;
+        z-index: 5;
+      }
+      header p {
+        margin: 0 auto;
+        text-align: center;
+      }
+      @keyframes bounce {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(10px);
+        }
+      }
+
+      /* --- 5. CARDS & ANIMATIONS --- */
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+      section {
+        padding-top: 120px;
+        padding-bottom: 90px;
+      }
+      .section-head {
+        margin-bottom: 40px;
+      }
+      .section-head h2 {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 10px;
+      }
+      .section-head p {
+        color: var(--text-dim);
+      }
+
+      .interactive-card {
+        background: var(--glass-surface);
+        border: 1px solid var(--glass-border);
+        border-radius: var(--radius-xl);
+        padding: 24px;
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+          border-color 0.3s, box-shadow 0.3s;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .interactive-card:active {
+        transform: scale(0.92);
+        border-color: var(--accent-primary);
+        box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+      }
+
+      .interactive-card::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          to right,
+          transparent,
+          rgba(255, 255, 255, 0.1),
+          transparent
+        );
+        transform: skewX(-25deg);
+        transition: 0.5s;
+        pointer-events: none;
+      }
+      .interactive-card:active::after {
+        left: 150%;
+        transition: 0s;
+      }
+
+      .interactive-card:hover {
+        transform: translateY(-6px);
+        border-color: var(--accent-primary);
+        box-shadow: 0 10px 30px rgba(59, 130, 246, 0.25);
+      }
+
+      .vm-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+      }
+      .vm-icon {
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(
+          135deg,
+          var(--accent-primary),
+          var(--accent-secondary)
+        );
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        color: #fff;
+        margin-bottom: 20px;
+      }
+      .vm-content ul {
+        list-style: none;
+        margin-top: 15px;
+      }
+      .vm-content li {
+        margin-bottom: 10px;
+        color: var(--text-dim);
+        display: flex;
+        align-items: start;
+        gap: 10px;
+        font-size: 0.9rem;
+      }
+
+      /* ================================
+        PROFIL GURU & PENGURUS (FINAL)
+        ================================ */
+
+      /* walikelas & semua kartu tetap center */
+      .profile-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px;
+      }
+
+      /* foto wali kelas */
+      .avatar-lg {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid var(--accent-secondary);
+        padding: 3px;
+        margin-bottom: 15px;
+        box-sizing: border-box; /* biar lingkarannya rapi */
+      }
+
+      /* ketua kelas tetap sendiri di tengah */
+      .ketua-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        max-width: 500px;
+        margin: 20px auto 5px auto;
+        gap: 15px;
+      }
+
+      .ketua-grid .officer-card {
+        text-align: center;
+        border-radius: var(--radius-md);
+        padding: 20px;
+      }
+
+      /* sisanya 2 kolom, mau hp atau pc tetap 2 */
+      .officer-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+        margin-top: 15px;
+        align-items: stretch;
+      }
+
+      /* kartu */
+      .officer-card {
+        text-align: center;
+        border-radius: var(--radius-md);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 230px;
+        align-items: center; /* ini kunci */
+      }
+
+      .officer-card h4 {
+        min-height: 48px; /* 2 baris nama */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      /* foto petugas */
+      .officer-card img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 1.5px solid var(--accent-secondary);
+        padding: 3px;
+        margin-bottom: 12px;
+        display: block;
+        margin: 0 auto 12px auto; /* paksa center */
+      }
+
+      /* Student Grid */
+      .student-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+        gap: 15px;
+      }
+      .student-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        border-radius: var(--radius-md);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+        background: var(--glass-surface);
+        border: 1px solid var(--glass-border);
+      }
+      .student-img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+        background: #222;
+        pointer-events: none;
+      }
+      .student-name {
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #fff;
+        pointer-events: none;
+      }
+      .student-id {
+        font-size: 0.75rem;
+        color: var(--text-dim);
+        pointer-events: none;
+      }
+
+      /* --- 6. PRESTASI & SOCIAL COMPACT (UPDATED) --- */
+      /* Grid Prestasi di Bawah Anggota */
+      .prestasi-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+      }
+      .prestasi-card {
+        padding: 0;
+        overflow: hidden;
+        height: 250px;
+        position: relative;
+        border-radius: var(--radius-md);
+      }
+      .prestasi-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: 0.5s;
+      }
+      .prestasi-card:hover img {
+        transform: scale(1.1);
+      }
+      .prestasi-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 20px;
+      }
+
+      /* Instagram Compact Style */
+      .social-compact {
+        max-width: 450px; /* Ukuran dibatasi agar kecil */
+        margin: 0 auto;
+        text-align: center;
+        padding: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.03),
+          rgba(255, 255, 255, 0.01)
+        );
+      }
+      .ig-icon-small {
+        font-size: 2.5rem;
+        background: linear-gradient(45deg, #405de6, #e1306c, #fd1d1d);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .ig-btn-small {
+        padding: 10px 25px;
+        border-radius: 50px;
+        background: var(--glass-highlight);
+        border: 1px solid var(--glass-border);
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.9rem;
+        font-weight: 600;
+        transition: 0.3s;
+        transform: translateY(0);
+      }
+      .ig-btn-small:hover {
+        background: #fff;
+        color: #000;
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 768px) {
+        h1 {
+          font-size: 2.8rem;
+        }
+        .section-head h2 {
+          font-size: 1.5rem;
+        }
+        .ketua-grid {
+          max-width: 100%;
+        }
+        .officer-grid {
+          grid-template-columns: repeat(2, 1fr) !important;
+        }
+        .student-grid {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 10px;
+        }
+        .student-card {
+          padding: 12px;
+        }
+        .student-img {
+          width: 50px;
+          height: 50px;
+        }
+        .student-name {
+          font-size: 0.85rem;
+        }
+        .scroll-down {
+          display: none;
+        }
+      }
+
+      footer {
+        margin-top: 50px;
+        padding: 40px 20px;
+        border-top: 1px solid var(--glass-border);
+        text-align: center;
+        background: #000;
+      }
+      .brand-credit span {
+        color: var(--accent-primary);
+        font-weight: 700;
+        letter-spacing: 1px;
+      }
+
+      /* --- ANIMATIONS: FADE IN UP --- */
+      .fade-in-up {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1),
+          transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      }
+      .fade-in-up.visible {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+
+      #visimisi {
+        scroll-margin-top: 90px;
+        margin-top: 120px;
+      }
+
+      section.container {
+        margin-top: 80px;
+    }
+
+      #visimisi .section-head {
+        margin-top: 40px;
+      }
+
+      @media (max-width: 768px) {
+        header {
+          min-height: 100svh; /* lebih akurat di hp */
+          padding-top: 60px; /* navbar aman */
+          padding-bottom: 40px;
+          justify-content: center;
+        }
+
+        .badge {
+          margin-bottom: 12px;
+          font-size: 0.7rem;
+        }
+
+        header h1 {
+          font-size: 2.9rem; /* PAS di hp */
+          line-height: 1.05;
+          margin-bottom: 14px;
+          max-width: 900px;
+        }
+
+        header p {
+          font-size: 0.9rem;
+          max-width: 320px;
+          margin-bottom: 0;
+        }
+
+        .scroll-down {
+          display: none; /* ini ganggu di hp */
+        }
+      }
+
+      nav.shrink {
+        padding: 8px 18px;
+        background: rgba(7, 20, 38, 0.9);
+      }
+
+      .album-tabs {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 25px;
+      }
+
+      .album-tabs .tab {
+        padding: 10px 22px;
+        border-radius: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: rgba(255, 255, 255, 0.05);
+        color: #fff;
+        cursor: pointer;
+        font-weight: 700;
+        transition: 0.3s;
+      }
+
+      .album-tabs .tab:hover {
+        transform: translateY(-2px);
+      }
+
+      .album-tabs .tab.active {
+        background: #3b82f6;
+        border-color: #3b82f6;
+      }
+
+      .album {
+        display: none;
+      }
+
+      .album.active {
+        display: grid;
+      }
+
+      /* =======================
+   RESPONSIVE FIX MASTERPACK
+   buat hp & tablet
+   ======================= */
+      @media (max-width: 768px) {
+        /* judul section biar gak teriak */
+        .section-head h2 {
+          font-size: 1.4rem;
+          text-align: center;
+        }
+
+        .section-head p {
+          text-align: center;
+          font-size: 0.9rem;
+        }
+
+        /* semua grid jadi 1 kolom rapi */
+        .vm-grid {
+          grid-template-columns: 1fr !important;
+        }
+
+        /* spacing biar lega */
+        section {
+          padding-top: 70px;
+          padding-bottom: 60px;
+        }
+
+        /* kartu jangan terlalu gede */
+        .interactive-card {
+          padding: 18px;
+        }
+
+        /* ======================
+       VISI MISI
+    ======================= */
+        #visimisi .vm-content ul li {
+          font-size: 0.9rem;
+          line-height: 1.4;
+        }
+
+        /* ======================
+       SOFTWARE & TOOLS
+    ======================= */
+        .vm-icon {
+          width: 42px;
+          height: 42px;
+          font-size: 1rem;
+          margin-bottom: 12px;
+        }
+
+        /* ======================
+       OUR MOMENTS (gallery)
+    ======================= */
+        .gallery-wrapper {
+          gap: 10px;
+        }
+
+        .gallery-item {
+          min-width: 230px;
+          height: 290px;
+        }
+
+        /* ======================
+       ALBUM & HALL OF FAME
+    ======================= */
+        .prestasi-grid {
+          grid-template-columns: repeat(2, 1fr) !important;
+        }
+
+        .prestasi-card {
+          height: 180px; /* biar gak kepanjangan */
+        }
+
+        /* ======================
+       KONTAK & INFORMASI
+    ======================= */
+        #kontak .vm-grid {
+          grid-template-columns: 1fr !important;
+        }
+
+        #kontak .interactive-card h3 {
+          font-size: 1.1rem;
+        }
+
+        #kontak p {
+          font-size: 0.9rem;
+        }
+
+        /* ======================
+       OUR MOMENTS title fix
+    ======================= */
+        #moments h2,
+        #album h2,
+        #prestasi h2 {
+          text-align: center;
+        }
+      }
+
+      #struktur {
+        margin-bottom: 80px;
+      }
+
+      #siswa {
+        margin-top: 40px;
+        margin-bottom: 80px;
+      }
+
+      #album {
+        margin-top: 40px;
+        margin-bottom: 80px;
+      }
+
+      #prestasi {
+        margin-top: 40px;
+        margin-bottom: 80px;
+      }
+
+      #connect {
+        margin-top: 30px;
+        margin-bottom: 80px;
+      }
+
+      #kontak {
+        margin-top: 40px;
+      }
+
+      .admin-mode .interactive-card {
+        outline: 2px dashed #3b82f6;
+        cursor: pointer;
+      }
+    </style>
   </head>
   <body>
-    <!--Navbar Start-->
-    <nav class="navbar">
-      <a href="#" class="navbar-logo">kenangan<span>senja</span>.</a>
-      <div class="navbar-nav">
-        <a href="#home">Home</a>
-        <a href="#about">Tentang Kami</a>
-        <a href="#menu">Menu</a>
-        <a href="#products">Produk</a>
-        <a href="#contact">Kontak</a>
+    <div id="loader">
+      <div class="loader-text">XII TKJ 2</div>
+      <div class="spinner"></div>
+    </div>
+
+    <nav>
+      <div class="brand">
+        XII <span style="color: var(--accent-primary)">TKJ 2</span>
       </div>
-      <div class="navbar-extra">
-        <a href="#" id="search-button"><i data-feather="search"></i></a>
-        <a href="#" id="shopping-cart-button"
-          ><i data-feather="shopping-cart"></i
-        ></a>
-        <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+      <div class="menu-trigger" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
       </div>
-      <!-- Search Form Start -->
-      <div class="search-form">
-        <input type="search" id="search-box" placeholder="search here..." />
-        <label for="search-box"><i data-feather="search"></i></label>
-      </div>
-      <!-- Search Form End -->
-      <!-- Shopping Cart Start -->
-      <div class="shopping-cart">
-        <div class="cart-item">
-          <img src="img/products/1.jpg" alt="Product 1" />
-          <div class="item-detail">
-            <h3>Product 1</h3>
-            <div class="item-price">IDR 30K</div>
-          </div>
-          <i data-feather="trash-2" class="remove-item"></i>
-        </div>
-        <div class="cart-item">
-          <img src="img/products/1.jpg" alt="Product 1" />
-          <div class="item-detail">
-            <h3>Product 1</h3>
-            <div class="item-price">IDR 30K</div>
-          </div>
-          <i data-feather="trash-2" class="remove-item"></i>
-        </div>
-        <div class="cart-item">
-          <img src="img/products/1.jpg" alt="Product 1" />
-          <div class="item-detail">
-            <h3>Product 1</h3>
-            <div class="item-price">IDR 30K</div>
-          </div>
-          <i data-feather="trash-2" class="remove-item"></i>
-        </div>
-      </div>
-      <!-- Shopping Cart End -->
     </nav>
-    <!--Navbar End-->
-    <!--Hero Section Start-->
-    <section class="hero" id="home">
-      <main class="content">
-        <h1>Mari Nikmati Secangkir <span>Kopi</span></h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium,
-          enim.
+
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#home">Beranda</a>
+      <a href="#visimisi">Visi Misi</a>
+      <a href="#pelajaran">Pembelajaran</a>
+      <a href="#software">Software</a>
+      <a href="#struktur">Struktur</a>
+      <a href="#siswa">Anggota</a>
+      <a href="#album">Album</a>
+      <a href="#prestasi">Prestasi</a>
+      <a href="#kontak">Kontak</a>
+
+      <div style="margin-top:20px;color:var(--text-dim);font-size:1.5rem"
+          onclick="toggleMenu(true)">
+        <i class="fas fa-times"></i>
+      </div>
+    </div>
+    <div class="menu-overlay" id="menuOverlay" onclick="toggleMenu()"></div>
+    <header id="home">
+      <div class="badge fade-in-up">WEB KELAS XII TKJ 2</div>
+      <h1 class="fade-in-up">WELCOME TO<br />XII TKJ 2</h1>
+      <p
+        class="fade-in-up"
+        style="max-width: 400px; color: var(--text-dim); margin-bottom: 30px"
+      >
+        Bersama, Belajar, Ketawa, Dan Lulus Bareng
+      </p>
+      <div class="scroll-down">
+        <i class="fas fa-chevron-down" style="color: var(--text-dim)"></i>
+      </div>
+    </header>
+
+    <section id="visimisi" class="container">
+      <div class="section-head fade-in-up">
+        <h2>Tujuan Kami</h2>
+        <p>Arah langkah pergerakan kelas.</p>
+      </div>
+      <div class="vm-grid">
+        <div class="interactive-card fade-in-up">
+          <div class="vm-icon"><i class="fas fa-eye"></i></div>
+          <h3>Visi Kelas</h3>
+          <div class="vm-content">
+            <p style="color: var(--text-dim); line-height: 1.6">
+              Menjadi kelas yang unggul dalam prestasi, menjunjung tinggi etika,
+              serta membangun kebersamaan dan tanggung jawab bersama
+            </p>
+          </div>
+        </div>
+        <div class="interactive-card fade-in-up" style="transition-delay: 0.1s">
+          <div
+            class="vm-icon"
+            style="
+              background: linear-gradient(
+                135deg,
+                var(--accent-glow),
+                var(--accent-secondary)
+              );
+            "
+          >
+            <i class="fas fa-bullseye"></i>
+          </div>
+          <h3>Misi Kelas</h3>
+          <div class="vm-content">
+            <ul>
+              <li>
+                <i class="fas fa-check-circle"></i> Menumbuhkan sikap disiplin,
+                tanggung jawab, dan saling menghargai.
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Membentuk lingkungan belajar
+                yang nyaman dan produktif.
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Meningkatkan prestasi
+                akademik dan non-akademik siswa.
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Mendorong kerja sama,
+                solidaritas, dan kebersamaan kelas.
+              </li>
+              <li>
+                <i class="fas fa-check-circle"></i> Aktif berpartisipasi dalam
+                kegiatan sekolah dan masyarakat.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pelajaran" class="container">
+      <div class="section-head fade-in-up">
+        <h2>Apa yang Kami Pelajari</h2>
+        <p>Kemampuan teknologi yang dibangun di XII TKJ 2.</p>
+      </div>
+
+      <div class="vm-grid">
+        <div class="interactive-card fade-in-up">
+          <div class="vm-icon"><i class="fas fa-network-wired"></i></div>
+          <h3>Jaringan Komputer</h3>
+          <p style="color: var(--text-dim)">
+            Mulai dari dasar jaringan, subnetting, kabel, hingga simulasi
+            jaringan skala besar.
+          </p>
+        </div>
+
+        <div class="interactive-card fade-in-up">
+          <div class="vm-icon"><i class="fas fa-server"></i></div>
+          <h3>Administrasi Server</h3>
+          <p style="color: var(--text-dim)">
+            Belajar Linux, hosting, DHCP, DNS, remote, dan manajemen server.
+          </p>
+        </div>
+
+        <div class="interactive-card fade-in-up">
+          <div class="vm-icon"><i class="fas fa-shield-alt"></i></div>
+          <h3>Keamanan Jaringan</h3>
+          <p style="color: var(--text-dim)">
+            Firewall, VPN, proteksi serangan, dan keamanan data.
+          </p>
+        </div>
+
+        <div class="interactive-card fade-in-up">
+          <div class="vm-icon"><i class="fas fa-code"></i></div>
+          <h3>Pemrograman Dasar</h3>
+          <p style="color: var(--text-dim)">
+            Pengenalan coding untuk website dan aplikasi sederhana.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="software" class="container">
+      <div class="section-head fade-in-up">
+        <h2>Software & Tools</h2>
+        <p>Peralatan tempur yang kami gunakan.</p>
+      </div>
+
+      <div class="vm-grid">
+        <div class="interactive-card fade-in-up">
+          <div class="vm-icon"><i class="fas fa-project-diagram"></i></div>
+          <h3>Cisco Packet Tracer</h3>
+          <p style="color: var(--text-dim)">Simulasi jaringan profesional</p>
+        </div>
+
+        <div class="interactive-card fade-in-up">
+          <div class="vm-icon"><i class="fas fa-box"></i></div>
+          <h3>VirtualBox</h3>
+          <p style="color: var(--text-dim)">Virtualisasi sistem operasi</p>
+        </div>
+
+        <div class="interactive-card fade-in-up">
+          <div class="vm-icon"><i class="fas fa-network-wired"></i></div>
+          <h3>Winbox</h3>
+          <p style="color: var(--text-dim)">Manajemen Router MikroTik</p>
+        </div>
+
+        <div class="interactive-card fade-in-up">
+          <div class="vm-icon"><i class="fas fa-code"></i></div>
+          <h3>IDE Programming</h3>
+          <p style="color: var(--text-dim)">VS Code & editor modern</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="struktur" class="container">
+      <div class="section-head fade-in-up">
+        <h2>The Leaders</h2>
+        <p>Pilar penggerak kelas.</p>
+      </div>
+
+      <!-- wali kelas -->
+      <div
+        class="interactive-card profile-center fade-in-up"
+        style="max-width: 500px; margin: 0 auto"
+      >
+        <img src="walikelas.jpg" alt="Wali Kelas" class="avatar-lg" />
+        <h3>Pak Rizki Fahrozi</h3>
+        <p
+          style="
+            color: var(--accent-primary);
+            font-weight: 600;
+            margin-bottom: 10px;
+          "
+        >
+          Wali Kelas
         </p>
-        <a href="#" class="cta">Beli Sekarang</a>
-      </main>
-    </section>
-    <!--Hero Section End-->
-    <!--About Section Start-->
-    <section id="about" class="about">
-      <h2><span>Tentang</span> Kami</h2>
-      <div class="row">
-        <div class="about-img">
-          <img src="img/tentang-kami.jpg" alt="Tentang Kami" />
+        <p style="color: var(--text-dim); font-size: 0.9rem">
+          "Disiplin adalah kunci kesuksesan."
+        </p>
+      </div>
+
+      <!-- ketua kelas SENDIRI -->
+      <div class="ketua-grid">
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="ketua.jpeg" alt="Ketua Kelas" />
+          <h4>Prafangasta Bagus Kuncoro Yakti</h4>
+          <small style="color: var(--text-dim)">Ketua Kelas</small>
         </div>
-        <div class="content">
-          <h3>Kenapa Memilih Kopi Kami?</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem
-            cupiditate earum suscipit animi iste ducimus voluptatibus voluptate
-            cum eos ad.
+      </div>
+
+      <!-- sisanya -->
+      <div class="officer-grid">
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="sekretaris1.jpg" />
+          <h4>Reinka Aprilia Putri</h4>
+          <small style="color: var(--text-dim)">Sekretaris 1</small>
+        </div>
+
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="sekretaris2.jpg" />
+          <h4>Huzrotunnisa</h4>
+          <small style="color: var(--text-dim)">Sekretaris 2</small>
+        </div>
+
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="bendahara1.jpg" />
+          <h4>Indri Sapitri</h4>
+          <small style="color: var(--text-dim)">Bendahara 1</small>
+        </div>
+
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="bendahara2.jpg" />
+          <h4>Iwan Kurniawan</h4>
+          <small style="color: var(--text-dim)">Bendahara 2</small>
+        </div>
+
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="kebersihan1.jpg" />
+          <h4>Siti Nurjanah</h4>
+          <small style="color: var(--text-dim)">Seksi Kebersihan 1</small>
+        </div>
+
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="kebersihan2.jpg" />
+          <h4>Alif Maitsa Latief</h4>
+          <small style="color: var(--text-dim)">Seksi Kebersihan 2</small>
+        </div>
+
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="pendidikan1.jpg" />
+          <h4>Putri Nabila Septia Rahmawati</h4>
+          <small style="color: var(--text-dim)">Seksi Pendidikan 1</small>
+        </div>
+
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="pendidikan2.jpg" />
+          <h4>Derinda Peradita Nitinagara</h4>
+          <small style="color: var(--text-dim)">Seksi Pendidikan 2</small>
+        </div>
+
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="kerohanian1.jpg" />
+          <h4>Putri Hanisyah Oktaviani</h4>
+          <small style="color: var(--text-dim)">Seksi Kerohanian 1</small>
+        </div>
+
+        <div class="officer-card interactive-card fade-in-up">
+          <img src="kerohanian2.jpg" />
+          <h4>Nur Astuti</h4>
+          <small style="color: var(--text-dim)">Seksi Kerohanian 2</small>
+        </div>
+      </div>
+    </section>
+
+    <section id="siswa" class="container">
+      <div class="section-head fade-in-up">
+        <h2>Anggota Kelas</h2>
+        <p>Daftar lengkap siswa.</p>
+      </div>
+      <div class="student-grid" id="studentList"></div>
+    </section>
+
+    <section id="album" class="container">
+      <div class="section-head fade-in-up">
+        <h2>Album Kegiatan</h2>
+        <p>Dokumentasi kenangan XII TKJ 2.</p>
+      </div>
+
+      <!-- TAB PILIH ALBUM -->
+      <div class="album-tabs">
+        <button class="tab active" data-target="album1">Album 1</button>
+        <button class="tab" data-target="album2">Album 2</button>
+        <button class="tab" data-target="album3">Album 3</button>
+      </div>
+
+      <!-- ================= ALBUM 1 ================= -->
+      <div class="prestasi-grid album active" id="album1">
+        <div class="interactive-card prestasi-card fade-in-up">
+          <img src="album1.jpg" />
+          <div class="prestasi-overlay"><h3>Class Meeting</h3></div>
+        </div>
+
+        <div class="interactive-card prestasi-card fade-in-up">
+          <img src="album2.jpg" />
+          <div class="prestasi-overlay"><h3>Study Tour</h3></div>
+        </div>
+
+        <div class="interactive-card prestasi-card fade-in-up">
+          <img src="album3.jpg" />
+          <div class="prestasi-overlay"><h3>Buka Bersama</h3></div>
+        </div>
+
+        <div class="interactive-card prestasi-card fade-in-up">
+          <img src="album4.jpg" />
+          <div class="prestasi-overlay"><h3>Latihan Jaringan</h3></div>
+        </div>
+      </div>
+
+      <!-- ================= ALBUM 2 ================= -->
+      <div class="prestasi-grid album" id="album2">
+        <div class="interactive-card prestasi-card fade-in-up">
+          <img src="album5.jpg" />
+          <div class="prestasi-overlay"><h3>Class Meeting Lagi</h3></div>
+        </div>
+
+        <div class="interactive-card prestasi-card fade-in-up">
+          <img src="album6.jpg" />
+          <div class="prestasi-overlay"><h3>Camping</h3></div>
+        </div>
+      </div>
+
+      <!-- ================= ALBUM 3 ================= -->
+      <div class="prestasi-grid album" id="album3">
+        <div class="interactive-card prestasi-card fade-in-up">
+          <img src="album7.jpg" />
+          <div class="prestasi-overlay"><h3>Study Kasus</h3></div>
+        </div>
+
+        <div class="interactive-card prestasi-card fade-in-up">
+          <img src="album8.jpg" />
+          <div class="prestasi-overlay"><h3>Random Muka Capek</h3></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="prestasi" class="container">
+      <div class="section-head fade-in-up">
+        <h2>Prestasi & Hall of Fame</h2>
+        <p>Jejak prestasi dan kebanggaan kelas.</p>
+      </div>
+
+      <div class="prestasi-grid">
+        <div class="interactive-card prestasi-card fade-in-up">
+          <img
+            src="https://images.unsplash.com/photo-1526232761682-d26e03ac148e?q=80&w=800&auto=format&fit=crop"
+            alt="Juara Futsal"
+          />
+          <div class="prestasi-overlay">
+            <h3 style="color: #fff">Juara 1 Futsal 🏆</h3>
+            <small style="color: rgba(255, 255, 255, 0.8)"
+              >Classmeeting 2025</small
+            >
+          </div>
+        </div>
+
+        <div
+          class="interactive-card prestasi-card fade-in-up"
+          style="transition-delay: 0.1s"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=800&auto=format&fit=crop"
+            alt="Kelas Bersih"
+          />
+          <div class="prestasi-overlay">
+            <h3 style="color: #fff">Kelas Terbersih ✨</h3>
+            <small style="color: rgba(255, 255, 255, 0.8)"
+              >Penghargaan Oktober</small
+            >
+          </div>
+        </div>
+
+        <div
+          class="interactive-card prestasi-card fade-in-up"
+          style="transition-delay: 0.2s"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?q=80&w=800&auto=format&fit=crop"
+            alt="Juara Seni"
+          />
+          <div class="prestasi-overlay">
+            <h3 style="color: #fff">Juara 2 Mading 🎨</h3>
+            <small style="color: rgba(255, 255, 255, 0.8)">Hari Pahlawan</small>
+          </div>
+        </div>
+
+        <div
+          class="interactive-card prestasi-card fade-in-up"
+          style="transition-delay: 0.3s"
+        >
+          <img
+            src="https://images.unsplash.com/photo-1545959922-1d0b3c27a23c?q=80&w=800&auto=format&fit=crop"
+            alt="Supporter"
+          />
+          <div class="prestasi-overlay">
+            <h3 style="color: #fff">Best Supporter 🔥</h3>
+            <small style="color: rgba(255, 255, 255, 0.8)"
+              >HUT Sekolah ke-50</small
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="alumni" class="container">
+      <div class="section-head">
+        <h2>Alumni XII TKJ 2</h2>
+        <p>Kenangan yang tetap hidup.</p>
+      </div>
+
+      <div class="vm-grid">
+        <div class="interactive-card">
+          <h3>Angkatan 2025</h3>
+          <p style="color: var(--text-dim)">
+            33 siswa<br />
+            Lulus & melanjutkan ke berbagai jalur
           </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus
-            doloremque voluptas eligendi officiis! Commodi fugit at quam
-            adipisci molestias vel.
+        </div>
+      </div>
+    </section>
+
+    <section id="connect" class="container fade-in-up">
+      <div class="interactive-card social-compact">
+        <i class="fab fa-instagram ig-icon-small"></i>
+        <div>
+          <h4 style="font-size: 1.1rem; color: #fff">@12tkj.tw0</h4>
+          <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 5px">
+            Ikuti keseharian kami.
           </p>
         </div>
+        <a
+          href="https://instagram.com/12tkj.tw0"
+          target="_blank"
+          class="ig-btn-small"
+        >
+          Follow Instagram
+        </a>
       </div>
     </section>
-    <!--About Section End-->
-    <!--Menu Section Start-->
-    <section id="menu" class="menu">
-      <h2><span>Menu</span> Kami</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint magnam
-        laboriosam illo deleniti debitis ad.
-      </p>
-      <div class="row">
-        <div class="menu-card">
-          <img src="img/menu/1.jpg" alt="Espresso" class="menu-card-img" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15K</p>
-        </div>
-        <div class="menu-card">
-          <img src="img/menu/1.jpg" alt="Espresso" class="menu-card-img" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15K</p>
-        </div>
-        <div class="menu-card">
-          <img src="img/menu/1.jpg" alt="Espresso" class="menu-card-img" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15K</p>
-        </div>
-        <div class="menu-card">
-          <img src="img/menu/1.jpg" alt="Espresso" class="menu-card-img" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15K</p>
-        </div>
-        <div class="menu-card">
-          <img src="img/menu/1.jpg" alt="Espresso" class="menu-card-img" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15K</p>
-        </div>
-        <div class="menu-card">
-          <img src="img/menu/1.jpg" alt="Espresso" class="menu-card-img" />
-          <h3 class="menu-card-title">- Espresso -</h3>
-          <p class="menu-card-price">IDR 15K</p>
-        </div>
+
+    <section id="kontak" class="container">
+      <div class="section-head fade-in-up">
+        <h2>Kontak & Informasi</h2>
+        <p>Hubungi kami di bawah ini.</p>
       </div>
-    </section>
-    <!--Menu Section End-->
-    <!--Produk Section Start-->
-    <section class="products" id="products">
-      <h2><span>Produk Unggulan</span> Kami</h2>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Non veniam
-        dolorum, iusto fugit a et.
-      </p>
-      <div class="row">
-        <div class="product-card">
-          <div class="product-icons">
-            <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#"><i data-feather="eye"></i></a>
-          </div>
-          <div class="product-image">
-            <img src="img/products/1.jpg" alt="Product 1" />
-          </div>
-          <div class="product-contect">
-            <h3>Coffee Beans 1</h3>
-            <div class="product-stars">
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
+
+        <div class="interactive-card fade-in-up">
+            <h3>alamat sekolah</h3>
+
+            <div style="margin-top:12px; border-radius:16px; overflow:hidden; border:1px solid rgba(255,255,255,.1);">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.994730418154!2d107.46252307409875!3d-6.394679662542948!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6972648fb0eb35%3A0x8439c7802ba209e5!2sSMK%20TI%20Muhammadiyah%20Cikampek!5e0!3m2!1sid!2sid!4v1768191784367!5m2!1sid!2sid"
+                    allowfullscreen="" 
+                    loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
             </div>
-            <div class="product-price">IDR 30K <span>IDR 55K</span></div>
-          </div>
+
+            <p style="color:var(--text-dim); margin-top:10px; font-size:.9rem;">
+                smk ti muhammadiyah cikampek
+            </p>
         </div>
-        <div class="product-card">
-          <div class="product-icons">
-            <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#"><i data-feather="eye"></i></a>
-          </div>
-          <div class="product-image">
-            <img src="img/products/1.jpg" alt="Product 1" />
-          </div>
-          <div class="product-contect">
-            <h3>Coffee Beans 1</h3>
-            <div class="product-stars">
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-            </div>
-            <div class="product-price">IDR 30K <span>IDR 55K</span></div>
-          </div>
+
+        <div class="interactive-card fade-in-up">
+          <h3>Email</h3>
+          <p style="color: var(--text-dim)">kelas12tkj2@gmail.com</p>
         </div>
-        <div class="product-card">
-          <div class="product-icons">
-            <a href="#"><i data-feather="shopping-cart"></i></a>
-            <a href="#"><i data-feather="eye"></i></a>
-          </div>
-          <div class="product-image">
-            <img src="img/products/1.jpg" alt="Product 1" />
-          </div>
-          <div class="product-contect">
-            <h3>Coffee Beans 1</h3>
-            <div class="product-stars">
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-              <i data-feather="star" class="star"></i>
-            </div>
-            <div class="product-price">IDR 30K <span>IDR 55K</span></div>
-          </div>
+
+        <div class="interactive-card fade-in-up">
+          <h3>Instagram</h3>
+          <p style="color: var(--text-dim)">@12tkj.tw0</p>
         </div>
       </div>
     </section>
-    <!--Produk Section End-->
-    <!--Contact Section Start-->
-    <section id="contact" class="contact">
-      <h2><span>Kontak</span> Kami</h2>
-      <p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Animi, autem!
-      </p>
-      <div class="row">
-        <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.6987633944177!2d107.48555307021354!3d-6.432727848642726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e696d51cbfcf9d7%3A0xb603212714fc3b3d!2sPerum%20Griya%20Utami!5e0!3m2!1sid!2sid!4v1768122534749!5m2!1sid!2sid"
-          allowfullscreen=""
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          class="map"
-        ></iframe>
-        <form action="">
-          <div class="input-group">
-            <i data-feather="user"></i>
-            <input type="text" placeholder="Nama" />
-          </div>
-          <div class="input-group">
-            <i data-feather="mail"></i>
-            <input type="text" placeholder="Email" />
-          </div>
-          <div class="input-group">
-            <i data-feather="phone"></i>
-            <input type="text" placeholder="No Hp" />
-          </div>
-          <button type="submit" class="btn">Kirim Pesan</button>
-        </form>
-      </div>
-    </section>
-    <!--Contact Section End-->
-    <!--Footer Start-->
+
     <footer>
-      <div class="socials">
-        <a href="https://www.instagram.com/wokflinn"
-          ><i class="fa-brands fa-instagram"></i
-        ></a>
-        <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-        <a href="https://www.tiktok.com/@pinn1291"
-          ><i class="fa-brands fa-tiktok"></i
-        ></a>
-        <a href="https://wa.me/6281585595822"
-          ><i class="fa-brands fa-whatsapp"></i
-        ></a>
-      </div>
-      <div class="links">
-        <a href="#home">Home</a>
-        <a href="#about">Tentang Kami</a>
-        <a href="#menu">Menu</a>
-        <a href="#contact">Kontak</a>
-      </div>
-      <div class="credit">
-        <p>Created By <a href="">WokFlinn</a>. | &copy; 2025.</p>
+      <div class="container">
+        <h3 style="margin-bottom: 10px">XII TKJ 2</h3>
+        <div class="brand-credit">DESIGNED BY <span>Roflin Juliadi</span></div>
+        <p style="color: var(--text-dim); font-size: 0.75rem; margin-top: 20px">
+          &copy; 2025 All Rights Reserved.
+        </p>
       </div>
     </footer>
 
-    <!--Footer End-->
-    <!--Feather Icons-->
     <script>
-      feather.replace();
+      // 1. Loading Screen
+      window.addEventListener("load", () => {
+        const loader = document.getElementById("loader");
+        setTimeout(() => {
+          loader.style.opacity = "0";
+          setTimeout(() => {
+            loader.style.display = "none";
+          }, 800);
+        }, 1000);
+      });
+
+      // 2. Menu Toggle
+      function toggleMenu(forceClose = false) {
+        const menu = document.getElementById("mobileMenu");
+        const overlay = document.getElementById("menuOverlay");
+
+        if (forceClose) {
+          menu.classList.remove("active");
+          overlay.classList.remove("active");
+        } else {
+          menu.classList.toggle("active");
+          overlay.classList.toggle("active");
+        }
+      }
+
+      // 3. Scroll Animation
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+            }
+          });
+        },
+        { threshold: 0.1 }
+      );
+
+      document
+        .querySelectorAll(".fade-in-up")
+        .forEach((el) => observer.observe(el));
+
+      // 4. Generate Students
+      const studentContainer = document.getElementById("studentList");
+
+      const names = [
+        "Alif Maitsa Latief",
+        "Alikha Syafitri",
+        "Alinea Nurani Rukhulain",
+        "Alysa Khumaera",
+        "Aurellia Putri Mahendra",
+        "Chika Aulia",
+        "Cici Udaningsih",
+        "Derinda Peradita Nitinagara",
+        "Devi Lestari",
+        "Fanny Fadillah Nuraini",
+        "Hari Iryawan",
+        "Huzrotunnisa",
+        "Indri Sapitri",
+        "Iwan Kurniawan",
+        "Jihan Uswatun Hasalah",
+        "Marshya Putri Ananditha",
+        "Nainawa Fatimah Azzahra",
+        "Nur Astuti Barokah",
+        "Prafangasta Bagus Kuncoro Yakti",
+        "Putri Eka Pratiwi",
+        "Putri Hanisyah Oktaviani",
+        "Putri Nabila Septia Rahmawati",
+        "Reinka Aprilia Putri",
+        "Rere Keysa Aulia",
+        "Rifa Fadia Rahmah",
+        "Rita",
+        "Roflin Juliadi",
+        "Shafira Dian Ifarah",
+        "Shela Rastianti",
+        "Sherlly Andini",
+        "Shieva Preshiliya",
+        "Siti Nurjanah",
+        "Zico Apriandi",
+      ]; // total 33, silakan ubah sesuai nama asli
+
+      names.forEach((name, i) => {
+        const div = document.createElement("div");
+        div.className = "student-card interactive-card fade-in-up";
+
+        let delay = (i % 8) * 0.1;
+        div.style.transitionDelay = `${delay}s`;
+
+        div.innerHTML = `
+                <img src="siswa${i + 1}.jpg"
+                    class="student-img"
+                    alt="${name}"
+                    loading="lazy"
+                    onerror="this.onerror=null;this.src='default-avatar.png';">
+                <div class="student-name">${name}</div>
+                <div class="student-id">No. ${i + 1}</div>
+            `;
+
+        studentContainer.appendChild(div);
+        observer.observe(div);
+      });
+
+      window.addEventListener("scroll", () => {
+        const nav = document.querySelector("nav");
+        nav.classList.toggle("shrink", window.scrollY > 10);
+      });
     </script>
-    <!--My Java Script-->
-    <script src="js/script.js"></script>
     <script>
-      // toggle class active untuk hamburger menu
-      const navbarNav = document.querySelector(".navbar-nav");
+      const tabs = document.querySelectorAll(".tab");
+      const albums = document.querySelectorAll(".album");
 
-      // ketika hamburger menu di klik
-      document.querySelector("#hamburger-menu").onclick = () => {
-        navbarNav.classList.toggle("active");
-      };
+      tabs.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          tabs.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
 
-      // toggle class active untuk search form
-      const searchForm = document.querySelector(".search-form");
-      const searchBox = document.querySelector("#search-box");
-      document.querySelector("#search-button").onclick = (e) => {
-        searchForm.classList.toggle("active");
-        searchBox.focus();
-        e.preventDefault();
-      };
-
-      // toggle class active untuk shopping cart
-      const shoppingCart = document.querySelector(".shopping-cart");
-      document.querySelector("#shopping-cart-button").onclick = (e) => {
-        shoppingCart.classList.toggle("active");
-        e.preventDefault();
-      };
-
-      //klik di luar elemen
-      const hm = document.querySelector("#hamburger-menu");
-      const sb = document.querySelector("#search-button");
-      const sc = document.querySelector("#shopping-cart-button");
-      document.addEventListener("click", function (e) {
-        if (!hm.contains(e.target) && !navbarNav.contains(e.target)) {
-          navbarNav.classList.remove("active");
-        }
-        if (!sb.contains(e.target) && !searchForm.contains(e.target)) {
-          searchForm.classList.remove("active");
-        }
-        if (!sc.contains(e.target) && !shoppingCart.contains(e.target)) {
-          shoppingCart.classList.remove("active");
+          albums.forEach((a) => a.classList.remove("active"));
+          document.getElementById(btn.dataset.target).classList.add("active");
+        });
+      });
+    </script>
+    <script>
+      if ("serviceWorker" in navigator) {
+        navigator.serviceWorker.register("service-worker.js");
+      }
+    </script>
+    <script>
+      let adminTap = 0;
+      document.querySelector(".brand").addEventListener("click", () => {
+        adminTap++;
+        if (adminTap === 5) {
+          const pass = prompt("Admin Password:");
+          if (pass === "tkj2admin") {
+            document.body.classList.add("admin-mode");
+            alert("Admin Mode Aktif");
+          }
+          adminTap = 0;
         }
       });
+
+// ========== MOBILE MENU ==========
+const menuBtn = document.querySelector(".menu-trigger"); // tombol hamburger
+const mobileMenu = document.querySelector("#mobileMenu");
+const menuOverlay = document.querySelector("#menuOverlay");
+
+// klik hamburger
+menuBtn.onclick = () => {
+  mobileMenu.classList.toggle("active");
+  menuOverlay.classList.toggle("active");
+};
+
+// klik overlay = tutup
+menuOverlay.onclick = () => {
+  mobileMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
+};
+
+// klik link menu = tutup
+document.querySelectorAll("#mobileMenu a").forEach(link => {
+  link.onclick = () => {
+    mobileMenu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+  };
+});
+
+// klik di luar menu (opsional tapi mirip punyamu)
+document.addEventListener("click", function (e) {
+  if (
+    !mobileMenu.contains(e.target) &&
+    !menuBtn.contains(e.target)
+  ) {
+    mobileMenu.classList.remove("active");
+    menuOverlay.classList.remove("active");
+  }
+});
+const navHeight = document.querySelector("nav").offsetHeight;
+
+document.querySelectorAll(".mobile-menu a").forEach(link => {
+  link.addEventListener("click", function(e) {
+    e.preventDefault();
+
+    const targetID = this.getAttribute("href");
+    const target = document.querySelector(targetID);
+
+    const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 10;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth"
+    });
+
+    // tutup menu setelah klik
+    document.getElementById("mobileMenu").classList.remove("active");
+    document.getElementById("menuOverlay").classList.remove("active");
+  });
+});
     </script>
   </body>
 </html>
